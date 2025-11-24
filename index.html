@@ -1,386 +1,369 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<title>p5 과제 1~4</title>
-<!-- p5.js CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
-<style>
-body {
-margin: 0;
-font-family: sans-serif;
-background: #f5f5f5;
-}
-h1 {
-text-align: center;
-margin: 20px 0;
-}
-.grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 20px;
-padding: 20px;
-box-sizing: border-box;
-}
-.sketch-box {
-background: white;
-padding: 10px;
-border-radius: 8px;
-box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-.sketch-title {
-font-weight: bold;
-margin-bottom: 8px;
-}
-</style>
+  <meta charset="UTF-8" />
+  <title>p5 과제 1~4</title>
+  <!-- p5.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #f5f5f5;
+    }
+    h1 { text-align: center; margin: 20px 0; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .sketch-box {
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .sketch-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+  </style>
 </head>
 <body>
-<h1>p5.js 과제 1~4</h1>
-
-<div class="grid">
-<div class="sketch-box">
-<div class="sketch-title">과제 1</div>
-<div id="sketch1"></div>
-</div>
-<div class="sketch-box">
-<div class="sketch-title">과제 4</div>
-<div id="sketch4"></div>
-</div>
-<div class="sketch-box">
-<div class="sketch-title">과제 2</div>
-<div id="sketch2"></div>
-</div>
-<div class="sketch-box">
-<div class="sketch-title">과제 3</div>
-<div id="sketch3"></div>
-</div>
-</div>
-
-<script>
-/* ----------------------- 과제 1 ----------------------- */
-const sketch1 = (p) => {
-p.setup = () => {
-p.createCanvas(600, 400);
-p.background(220, 235, 255);
-
-p.noStroke();
-p.fill(255);
-p.ellipse(300, 270, 120, 120);
-p.ellipse(300, 170, 70, 70);
-
-p.fill(30);
-p.ellipse(285, 165, 8, 8);
-p.ellipse(315, 165, 8, 8);
-
-p.fill(255, 140, 0);
-p.triangle(300, 170, 300, 180, 325, 175);
-
-p.fill(60);
-p.ellipse(300, 245, 12, 12);
-p.ellipse(300, 270, 12, 12);
-p.ellipse(300, 295, 12, 12);
-
-p.stroke(120, 80, 40);
-p.strokeWeight(5);
-p.line(250, 270, 180, 200);
-p.line(350, 270, 420, 200);
-};
-
-p.keyPressed = () => {
-if (p.key === 's' || p.key === 'S') {
-p.saveCanvas('snowman', 'png');
-}
-};
-};
-
-new p5(sketch1, 'sketch1');
-
-<script>
-/* ----------------------- 과제 2 ----------------------- */
-const sketch2 = (p) => {
-  p.setup = () => {
-    p.createCanvas(600, 400);
-    p.background(230, 210, 255);
-
-    p.noStroke();
-    p.fill(20);
-    p.rectMode(p.CENTER);
-    p.rect(300, 310, 220, 200);
-
-    p.fill(255);
-    p.stroke(0);
-    p.strokeWeight(2);
-    p.rect(300, 360, 170, 120, 20);
-
-    p.line(245, 340, 245, 405);
-    p.line(355, 340, 355, 405);
-
-    p.strokeWeight(6);
-    p.stroke(0, 102, 204);
-    for (let y = 320; y <= 400; y += 20) p.line(215, y, 385, y);
-
-    p.strokeWeight(6);
-    p.stroke(20);
-    p.line(215, 150, 215, 405);
-    p.line(385, 315, 385, 405);
-
-    p.fill(255);
-    p.noStroke();
-    p.arc(300, 250, 100, 80, 0, p.PI, p.CHORD);
-
-    p.fill(255, 224, 189);
-    p.stroke(0);
-    p.strokeWeight(2);
-    p.ellipse(300, 200, 220, 220);
-
-    p.noFill();
-    p.stroke(255, 215, 0);
-    p.strokeWeight(3);
-    p.ellipse(190, 250, 20, 20);
-    p.ellipse(410, 250, 20, 20);
-
-    p.fill(20);
-    p.noStroke();
-    p.arc(300, 180, 220, 190, p.PI, 0, p.CHORD);
-
-    p.noStroke();
-    p.fill(255, 224, 189);
-    p.arc(250, 210, 50, 30, p.PI, 0, p.CHORD);
-    p.arc(350, 210, 50, 30, p.PI, 0, p.CHORD);
-
-    p.stroke(0);
-    p.noFill();
-    p.strokeWeight(3);
-    p.arc(250, 210, 50, 30, p.PI, 0, p.OPEN);
-    p.arc(350, 210, 50, 30, p.PI, 0, p.OPEN);
-
-    p.fill(255, 150, 140);
-    p.strokeWeight(2);
-    p.triangle(295, 250, 305, 250, 300, 275);
-  };
-
-  p.keyPressed = () => {
-    if (p.key === 's' || p.key === 'S') p.saveCanvas("me", "png");
-  };
-};
-new p5(sketch2, "sketch2");
-
-  
-<script>
-/* ----------------------- 과제 3 ----------------------- */
-const sketch3 = (p) => {
-  let earringColorState = 0;
-  let eyeShapeState = 0;
-  let bgColor;
-
-  p.setup = () => {
-    p.createCanvas(600, 400);
-    bgColor = p.color(230, 210, 255);
-    p.noLoop();
-  };
-
-  p.draw = () => {
-    p.background(bgColor);
-
-    p.noStroke();
-    p.fill(20);
-    p.rectMode(p.CENTER);
-    p.rect(300, 310, 220, 200);
-
-    p.fill(255);
-    p.stroke(0);
-    p.strokeWeight(2);
-    p.rect(300, 360, 170, 120, 20);
-    p.line(245, 340, 245, 405);
-    p.line(355, 340, 355, 405);
-
-    p.strokeWeight(6);
-    p.stroke(0, 102, 204);
-    for (let y = 320; y <= 400; y += 20) p.line(215, y, 385, y);
-
-    p.strokeWeight(6);
-    p.stroke(20);
-    p.line(215, 150, 215, 405);
-    p.line(385, 315, 385, 405);
-
-    p.fill(255);
-    p.noStroke();
-    p.arc(300, 250, 100, 80, 0, p.PI, p.CHORD);
-
-    p.fill(255, 224, 189);
-    p.stroke(0);
-    p.strokeWeight(2);
-    p.ellipse(300, 200, 220, 220);
-
-    p.noFill();
-    p.strokeWeight(3);
-
-    if (earringColorState === 0) p.stroke(255, 215, 0);
-    else if (earringColorState === 1) p.stroke(192, 192, 192);
-    else p.stroke(255);
-
-    p.ellipse(190, 250, 20, 20);
-    p.ellipse(410, 250, 20, 20);
-
-    p.fill(20);
-    p.noStroke();
-    p.arc(300, 180, 220, 190, p.PI, 0, p.CHORD);
-
-    if (eyeShapeState === 0) {
-      p.noStroke();
-      p.fill(255, 224, 189);
-      p.arc(250, 210, 50, 30, p.PI, 0, p.CHORD);
-      p.arc(350, 210, 50, 30, p.PI, 0, p.CHORD);
-
-      p.stroke(0);
-      p.noFill();
-      p.strokeWeight(3);
-      p.arc(250, 210, 50, 30, p.PI, 0, p.OPEN);
-      p.arc(350, 210, 50, 30, p.PI, 0, p.OPEN);
-
-    } else if (eyeShapeState === 1) {
-      p.stroke(0);
-      p.strokeWeight(4);
-      p.line(225, 210, 275, 210);
-      p.line(325, 210, 375, 210);
-
-    } else {
-      p.stroke(0);
-      p.strokeWeight(3);
-      p.line(230, 200, 270, 220);
-      p.line(230, 220, 270, 200);
-      p.line(330, 200, 370, 220);
-      p.line(330, 220, 370, 200);
-    }
-
-    p.fill(255, 150, 140);
-    p.strokeWeight(2);
-    p.triangle(295, 250, 305, 250, 300, 275);
-  };
-
-  p.mousePressed = () => {
-    earringColorState = (earringColorState + 1) % 3;
-    eyeShapeState = (eyeShapeState + 1) % 3;
-    p.redraw();
-  };
-
-  p.mouseMoved = () => {
-    if (p.mouseX < p.width / 2) bgColor = p.color(230, 210, 255);
-    else bgColor = p.color(255, 255, 204);
-    p.redraw();
-  };
-
-  p.keyPressed = () => {
-    if (p.key === "a" || p.key === "A") {
-      bgColor = p.color(255);
-      p.redraw();
-    }
-    if (p.key === "s" || p.key === "S") {
-      p.saveGif("mySketch", 10);
-    }
-  };
-};
-new p5(sketch3, "sketch3");
-
-<script>
-/* ----------------------- 과제 4 ----------------------- */
-const sketch4 = (p) => {
-  let snowflakes = [];
-  const NUM_SNOW = 80;
-  let hatProgress = 0;
-
-  p.setup = () => {
-    p.createCanvas(600, 400);
-
-    for (let i = 0; i < NUM_SNOW; i++) {
-      snowflakes.push({
-        x: p.random(p.width),
-        y: p.random(p.height),
-        size: p.random(2, 6),
-        speed: p.random(0.5, 2)
-      });
-    }
-  };
-
-  p.draw = () => {
-    let c1 = p.color(220, 235, 255);
-    let c2 = p.color(150, 180, 255);
-    let amt = (p.sin(p.frameCount * 0.02) + 1) / 2;
-    let bg = p.lerpColor(c1, c2, amt);
-
-    p.background(bg);
-
-    p.noStroke();
-    for (let flake of snowflakes) {
-      p.fill(255, 255, 255, 220);
-      p.ellipse(flake.x, flake.y, flake.size, flake.size);
-
-      flake.y += flake.speed;
-      flake.x += p.cos(p.frameCount * 0.01 + flake.y * 0.02) * 0.2;
-
-      if (flake.y > p.height) {
-        flake.y = p.random(-20, 0);
-        flake.x = p.random(p.width);
-      }
-    }
-
-    let bodySize = 120 + 10 * p.sin(p.frameCount * 0.03);
-    let headSize = 70 + 5 * p.sin(p.frameCount * 0.03 + p.PI / 4);
-
-    p.noStroke();
-    p.fill(255);
-    p.ellipse(300, 270, bodySize, bodySize);
-    p.ellipse(300, 170, headSize, headSize);
-
-    p.fill(30);
-    p.ellipse(285, 165, 8, 8);
-    p.ellipse(315, 165, 8, 8);
-
-    p.fill(255, 140, 0);
-    p.triangle(300, 170, 300, 180, 325, 175);
-
-    p.fill(60);
-    p.ellipse(300, 245, 12, 12);
-    p.ellipse(300, 270, 12, 12);
-    p.ellipse(300, 295, 12, 12);
-
-    p.stroke(120, 80, 40);
-    p.strokeWeight(5);
-    p.line(250, 270, 180, 200);
-    p.line(350, 270, 420, 200);
-
-    p.push();
-    p.rectMode(p.CENTER);
-
-    p.colorMode(p.HSB);
-    let hatHue = (p.millis() * 0.02) % 360;
-    let hatCol = p.color(hatHue, 80, 90);
-    p.colorMode(p.RGB);
-    p.noStroke();
-    p.fill(hatCol);
-
-    if (hatProgress < 1) hatProgress += 0.02;
-
-    let t = 1 - p.pow(1 - hatProgress, 3);
-    let dropOffset = p.lerp(-200, 0, t);
-
-    let wobble = 0;
-    if (hatProgress >= 1) wobble = p.sin(p.frameCount * 0.05) * 3;
-
-    let hatY = dropOffset + wobble;
-
-    p.rect(300, 140 + hatY, headSize * 0.9, 10);
-    p.rect(300, 115 + hatY, headSize * 0.6, 40);
-
-    p.pop();
-  };
-
-  p.keyPressed = () => {
-    if (p.key === "s" || p.key === "S") p.saveGif("snowman_animation", 10);
-  };
-};
-new p5(sketch4, "sketch4");
-</script>
-
+  <h1>p5.js 과제 1~4</h1>
+  <div class="grid">
+    <div class="sketch-box">
+      <div class="sketch-title">과제 1</div>
+      <div id="sketch1"></div>
+    </div>
+    <div class="sketch-box">
+      <div class="sketch-title">과제 4</div>
+      <div id="sketch4"></div>
+    </div>
+    <div class="sketch-box">
+      <div class="sketch-title">과제 2</div>
+      <div id="sketch2"></div>
+    </div>
+    <div class="sketch-box">
+      <div class="sketch-title">과제 3</div>
+      <div id="sketch3"></div>
+    </div>
+  </div>
+  <script>
+    /* 과제 1 */
+    const sketch1 = (p) => {
+      p.setup = () => {
+        p.createCanvas(600, 400);
+        p.background(220, 235, 255);
+
+        p.noStroke();
+        p.fill(255);
+        p.ellipse(300, 270, 120, 120);
+        p.ellipse(300, 170, 70, 70);
+
+        p.fill(30);
+        p.ellipse(285, 165, 8, 8);
+        p.ellipse(315, 165, 8, 8);
+
+        p.fill(255, 140, 0);
+        p.triangle(300, 170, 300, 180, 325, 175);
+
+        p.fill(60);
+        p.ellipse(300, 245, 12, 12);
+        p.ellipse(300, 270, 12, 12);
+        p.ellipse(300, 295, 12, 12);
+
+        p.stroke(120, 80, 40);
+        p.strokeWeight(5);
+        p.line(250, 270, 180, 200);
+        p.line(350, 270, 420, 200);
+      };
+      p.keyPressed = () => {
+        if (p.key === 's' || p.key === 'S') p.saveCanvas('snowman', 'png');
+      };
+    };
+    new p5(sketch1, 'sketch1');
+
+    /* 과제 2 */
+    const sketch2 = (p) => {
+      p.setup = () => {
+        p.createCanvas(600, 400);
+        p.background(230, 210, 255);
+
+        p.noStroke();
+        p.fill(20);
+        p.rectMode(p.CENTER);
+        p.rect(300, 310, 220, 200);
+
+        p.fill(255);
+        p.stroke(0);
+        p.strokeWeight(2);
+        p.rect(300, 360, 170, 120, 20);
+
+        p.line(245, 340, 245, 405);
+        p.line(355, 340, 355, 405);
+
+        p.strokeWeight(6);
+        p.stroke(0, 102, 204);
+        for (let y = 320; y <= 400; y += 20) p.line(215, y, 385, y);
+
+        p.strokeWeight(6);
+        p.stroke(20);
+        p.line(215, 150, 215, 405);
+        p.line(385, 315, 385, 405);
+
+        p.fill(255);
+        p.noStroke();
+        p.arc(300, 250, 100, 80, 0, p.PI, p.CHORD);
+
+        p.fill(255, 224, 189);
+        p.stroke(0);
+        p.strokeWeight(2);
+        p.ellipse(300, 200, 220, 220);
+
+        p.noFill();
+        p.stroke(255, 215, 0);
+        p.strokeWeight(3);
+        p.ellipse(190, 250, 20, 20);
+        p.ellipse(410, 250, 20, 20);
+
+        p.fill(20);
+        p.noStroke();
+        p.arc(300, 180, 220, 190, p.PI, 0, p.CHORD);
+
+        p.noStroke();
+        p.fill(255, 224, 189);
+        p.arc(250, 210, 50, 30, p.PI, 0, p.CHORD);
+        p.arc(350, 210, 50, 30, p.PI, 0, p.CHORD);
+
+        p.stroke(0);
+        p.noFill();
+        p.strokeWeight(3);
+        p.arc(250, 210, 50, 30, p.PI, 0, p.OPEN);
+        p.arc(350, 210, 50, 30, p.PI, 0, p.OPEN);
+
+        p.fill(255, 150, 140);
+        p.strokeWeight(2);
+        p.triangle(295, 250, 305, 250, 300, 275);
+      };
+
+      p.keyPressed = () => {
+        if (p.key === 's' || p.key === 'S') p.saveCanvas("me", "png");
+      };
+    };
+    new p5(sketch2, "sketch2");
+
+    /* 과제 3 */
+    const sketch3 = (p) => {
+      let earringColorState = 0;
+      let eyeShapeState = 0;
+      let bgColor;
+
+      p.setup = () => {
+        p.createCanvas(600, 400);
+        bgColor = p.color(230, 210, 255);
+        p.noLoop();
+      };
+
+      p.draw = () => {
+        p.background(bgColor);
+        p.noStroke();
+        p.fill(20);
+        p.rectMode(p.CENTER);
+        p.rect(300, 310, 220, 200);
+
+        p.fill(255);
+        p.stroke(0);
+        p.strokeWeight(2);
+        p.rect(300, 360, 170, 120, 20);
+        p.line(245, 340, 245, 405);
+        p.line(355, 340, 355, 405);
+
+        p.strokeWeight(6);
+        p.stroke(0, 102, 204);
+        for (let y = 320; y <= 400; y += 20) p.line(215, y, 385, y);
+
+        p.strokeWeight(6);
+        p.stroke(20);
+        p.line(215, 150, 215, 405);
+        p.line(385, 315, 385, 405);
+
+        p.fill(255);
+        p.noStroke();
+        p.arc(300, 250, 100, 80, 0, p.PI, p.CHORD);
+
+        p.fill(255, 224, 189);
+        p.stroke(0);
+        p.strokeWeight(2);
+        p.ellipse(300, 200, 220, 220);
+
+        p.noFill();
+        p.strokeWeight(3);
+        if (earringColorState === 0) p.stroke(255, 215, 0);
+        else if (earringColorState === 1) p.stroke(192, 192, 192);
+        else p.stroke(255);
+
+        p.ellipse(190, 250, 20, 20);
+        p.ellipse(410, 250, 20, 20);
+
+        p.fill(20);
+        p.noStroke();
+        p.arc(300, 180, 220, 190, p.PI, 0, p.CHORD);
+
+        if (eyeShapeState === 0) {
+          p.noStroke();
+          p.fill(255, 224, 189);
+          p.arc(250, 210, 50, 30, p.PI, 0, p.CHORD);
+          p.arc(350, 210, 50, 30, p.PI, 0, p.CHORD);
+
+          p.stroke(0);
+          p.noFill();
+          p.strokeWeight(3);
+          p.arc(250, 210, 50, 30, p.PI, 0, p.OPEN);
+          p.arc(350, 210, 50, 30, p.PI, 0, p.OPEN);
+
+        } else if (eyeShapeState === 1) {
+          p.stroke(0);
+          p.strokeWeight(4);
+          p.line(225, 210, 275, 210);
+          p.line(325, 210, 375, 210);
+
+        } else {
+          p.stroke(0);
+          p.strokeWeight(3);
+          p.line(230, 200, 270, 220);
+          p.line(230, 220, 270, 200);
+          p.line(330, 200, 370, 220);
+          p.line(330, 220, 370, 200);
+        }
+        p.fill(255, 150, 140);
+        p.strokeWeight(2);
+        p.triangle(295, 250, 305, 250, 300, 275);
+      };
+
+      p.mousePressed = () => {
+        earringColorState = (earringColorState + 1) % 3;
+        eyeShapeState = (eyeShapeState + 1) % 3;
+        p.redraw();
+      };
+
+      p.mouseMoved = () => {
+        if (p.mouseX < p.width / 2) bgColor = p.color(230, 210, 255);
+        else bgColor = p.color(255, 255, 204);
+        p.redraw();
+      };
+
+      p.keyPressed = () => {
+        if (p.key === "a" || p.key === "A") {
+          bgColor = p.color(255);
+          p.redraw();
+        }
+        if (p.key === "s" || p.key === "S") {
+          p.saveGif("mySketch", 10);
+        }
+      };
+    };
+    new p5(sketch3, "sketch3");
+
+    /* 과제 4 */
+    const sketch4 = (p) => {
+      let snowflakes = [];
+      const NUM_SNOW = 80;
+      let hatProgress = 0;
+
+      p.setup = () => {
+        p.createCanvas(600, 400);
+
+        for (let i = 0; i < NUM_SNOW; i++) {
+          snowflakes.push({
+            x: p.random(p.width),
+            y: p.random(p.height),
+            size: p.random(2, 6),
+            speed: p.random(0.5, 2)
+          });
+        }
+      };
+
+      p.draw = () => {
+        let c1 = p.color(220, 235, 255);
+        let c2 = p.color(150, 180, 255);
+        let amt = (p.sin(p.frameCount * 0.02) + 1) / 2;
+        let bg = p.lerpColor(c1, c2, amt);
+
+        p.background(bg);
+
+        p.noStroke();
+        for (let flake of snowflakes) {
+          p.fill(255, 255, 255, 220);
+          p.ellipse(flake.x, flake.y, flake.size, flake.size);
+
+          flake.y += flake.speed;
+          flake.x += p.cos(p.frameCount * 0.01 + flake.y * 0.02) * 0.2;
+
+          if (flake.y > p.height) {
+            flake.y = p.random(-20, 0);
+            flake.x = p.random(p.width);
+          }
+        }
+
+        let bodySize = 120 + 10 * p.sin(p.frameCount * 0.03);
+        let headSize = 70 + 5 * p.sin(p.frameCount * 0.03 + p.PI / 4);
+
+        p.noStroke();
+        p.fill(255);
+        p.ellipse(300, 270, bodySize, bodySize);
+        p.ellipse(300, 170, headSize, headSize);
+
+        p.fill(30);
+        p.ellipse(285, 165, 8, 8);
+        p.ellipse(315, 165, 8, 8);
+
+        p.fill(255, 140, 0);
+        p.triangle(300, 170, 300, 180, 325, 175);
+
+        p.fill(60);
+        p.ellipse(300, 245, 12, 12);
+        p.ellipse(300, 270, 12, 12);
+        p.ellipse(300, 295, 12, 12);
+
+        p.stroke(120, 80, 40);
+        p.strokeWeight(5);
+        p.line(250, 270, 180, 200);
+        p.line(350, 270, 420, 200);
+
+        p.push();
+        p.rectMode(p.CENTER);
+
+        p.colorMode(p.HSB);
+        let hatHue = (p.millis() * 0.02) % 360;
+        let hatCol = p.color(hatHue, 80, 90);
+        p.colorMode(p.RGB);
+        p.noStroke();
+        p.fill(hatCol);
+
+        if (hatProgress < 1) hatProgress += 0.02;
+
+        let t = 1 - p.pow(1 - hatProgress, 3);
+        let dropOffset = p.lerp(-200, 0, t);
+
+        let wobble = 0;
+        if (hatProgress >= 1) wobble = p.sin(p.frameCount * 0.05) * 3;
+
+        let hatY = dropOffset + wobble;
+
+        p.rect(300, 140 + hatY, headSize * 0.9, 10);
+        p.rect(300, 115 + hatY, headSize * 0.6, 40);
+
+        p.pop();
+      };
+
+      p.keyPressed = () => {
+        if (p.key === "s" || p.key === "S") p.saveGif("snowman_animation", 10);
+      };
+    };
+    new p5(sketch4, "sketch4");
+  </script>
 </body>
 </html>
