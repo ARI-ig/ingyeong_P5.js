@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<title>p5 과제 1~4</title>
+<!-- p5.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+<style>
+body {
+margin: 0;
+font-family: sans-serif;
+background: #f5f5f5;
+}
+h1 {
+text-align: center;
+margin: 20px 0;
+}
+.grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 20px;
+padding: 20px;
+box-sizing: border-box;
+}
+.sketch-box {
+background: white;
+padding: 10px;
+border-radius: 8px;
+box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.sketch-title {
+font-weight: bold;
+margin-bottom: 8px;
+}
+</style>
+</head>
+<body>
+<h1>p5.js 과제 1~4</h1>
+
+<div class="grid">
+<div class="sketch-box">
+<div class="sketch-title">과제 1</div>
+<div id="sketch1"></div>
+</div>
+<div class="sketch-box">
+<div class="sketch-title">과제 4</div>
+<div id="sketch4"></div>
+</div>
+<div class="sketch-box">
+<div class="sketch-title">과제 2</div>
+<div id="sketch2"></div>
+</div>
+<div class="sketch-box">
+<div class="sketch-title">과제 3</div>
+<div id="sketch3"></div>
+</div>
+</div>
+
+<script>
+// ===== 과제 1 =====
+const sketch1 = (p) => {
+p.setup = () => {
+p.createCanvas(600, 400);
+p.background(220, 235, 255);
+
+p.noStroke();
+p.fill(255);
+p.ellipse(300, 270, 120, 120);
+p.ellipse(300, 170, 70, 70);
+
+p.fill(30);
+p.ellipse(285, 165, 8, 8);
+p.ellipse(315, 165, 8, 8);
+
+p.fill(255, 140, 0);
+p.triangle(300, 170, 300, 180, 325, 175);
+
+p.fill(60);
+p.ellipse(300, 245, 12, 12);
+p.ellipse(300, 270, 12, 12);
+p.ellipse(300, 295, 12, 12);
+
+p.stroke(120, 80, 40);
+p.strokeWeight(5);
+p.line(250, 270, 180, 200);
+p.line(350, 270, 420, 200);
+};
+
+p.keyPressed = () => {
+if (p.key === 's' || p.key === 'S') {
+p.saveCanvas('snowman', 'png');
+}
+};
+};
+
+new p5(sketch1, 'sketch1');
+
+
+// ===== 과제 2 =====
+const sketch2 = (p) => {
+function setup() {
+createCanvas(600, 400);
+background(230, 210, 255); // 연보라색 배경
+
+// 뒷머리: 검정색 직사각형 (머리 뒷부분 아래로 내림)
+noStroke();
+fill(20, 20, 20);
+rectMode(CENTER);
+rect(300, 310, 220, 200);
+
+// 흰색 반팔 티셔츠 몸통
+fill(255);
+stroke(0);
+strokeWeight(2);
+rect(300, 360, 170, 120, 20);
+
+// 안쪽으로 3cm(대략 30픽셀) 이동한 추가 선
+line(245, 340, 245, 405); // 왼쪽 안쪽 선 (215 + 30)
+line(355, 340, 355, 405); // 오른쪽 안쪽 선 (385 - 30)
+
+
+// 파란색 가로 스트라이프 무늬
+strokeWeight(6);
+stroke(0, 102, 204); // 파란색
+for (let y = 320; y <= 400; y += 20) {
+line(215, y, 385, y);
+}
+
+// 팔 부분 선 (티셔츠 몸통 양 옆)
+strokeWeight(6);
+stroke(20, 20, 20);
+line(215, 150, 215, 405); // 왼쪽 팔 선
+line(385, 315, 385, 405); // 오른쪽 팔 선
+
+// 흰색 반팔 티셔츠 목 부분 (간단한 반원)
+fill(255);
+noStroke();
+arc(300, 250, 100, 80, 0, PI, CHORD);
+
+
+// 얼굴: 살색 원형
+fill(255, 224, 189);
+stroke(0);
+strokeWeight(2);
+ellipse(300, 200, 220, 220);
+
+// 금색 링 귀걸이 (작은 원 두 개, 좌우 귀 위치에)
+noFill();
+stroke(255, 215, 0); // 금색
+strokeWeight(3);
+ellipse(190, 250, 20, 20); // 왼쪽 귀걸이 (작게)
+ellipse(410, 250, 20, 20); // 오른쪽 귀걸이 (작게)
+
+// 까만 앞머리 반원(검정색 머리 가장 앞으로)
+fill(20, 20, 20);
+noStroke();
+arc(300, 180, 220, 190, PI, 0, CHORD);
+
+// 눈 - 뒤집어진 웃는 눈 (살색 반원)
+noStroke();
+fill(255, 224, 189);
+arc(250, 210, 50, 30, PI, 0, CHORD);
+arc(350, 210, 50, 30, PI, 0, CHORD);
+
+stroke(0);
+noFill();
+strokeWeight(3);
+arc(250, 210, 50, 30, PI, 0, OPEN);
+arc(350, 210, 50, 30, PI, 0, OPEN);
+
+// 코 (간단 삼각형) 위치를 좀 더 아래로 이동
+fill(255, 150, 140);
+strokeWeight(2);
+triangle(295, 250, 305, 250, 300, 275); // y 좌표를 230,255에서 250,275로 이동
+}
+
+
+function keyPressed() {
+if (key === 's' || key === 'S') {
+saveCanvas('me', 'png'); // snowman.png 파일로 저장
+}
+}
+new p5(sketch2, 'sketch2');
+
+// ===== 과제 3 =====
+const sketch3 = (p) => {
+let earringColorState = 0; // 0: gold, 1: silver, 2: white
+let eyeShapeState = 0; // 0: original, 1: --, 2: ><
+let bgColor; // 배경색 변수
+
+function setup() {
+createCanvas(600, 400);
+bgColor = color(230, 210, 255); // 기본 연보라색 배경
+noLoop();
+}
+
+function draw() {
+background(bgColor);
+
+// 뒷머리
+noStroke();
+fill(20, 20, 20);
+rectMode(CENTER);
+rect(300, 310, 220, 200);
+
+// 반팔 티셔츠 몸통과 가로줄
+fill(255);
+stroke(0);
+strokeWeight(2);
+rect(300, 360, 170, 120, 20);
+line(245, 340, 245, 405);
+line(355, 340, 355, 405);
+
+strokeWeight(6);
+stroke(0, 102, 204);
+for (let y = 320; y <= 400; y += 20) {
+line(215, y, 385, y);
+}
+
+// 팔 부분 선
+strokeWeight(6);
+stroke(20, 20, 20);
+line(215, 150, 215, 405);
+line(385, 315, 385, 405);
+
+// 목 부분 반원
+fill(255);
+noStroke();
+arc(300, 250, 100, 80, 0, PI, CHORD);
+
+// 얼굴
+fill(255, 224, 189);
+stroke(0);
+strokeWeight(2);
+ellipse(300, 200, 220, 220);
+
+// 귀걸이 색상 결정
+noFill();
+strokeWeight(3);
+if (earringColorState === 0) {
+// 금색
+stroke(255, 215, 0);
+} else if (earringColorState === 1) {
+// 은색
+stroke(192, 192, 192);
+} else {
+// 흰색
+stroke(255);
+}
+ellipse(190, 250, 20, 20);
+ellipse(410, 250, 20, 20);
+
+// 앞머리
+fill(20, 20, 20);
+noStroke();
+arc(300, 180, 220, 190, PI, 0, CHORD);
+
+// 눈 모양 변경
+if (eyeShapeState === 0) {
+// 원래 눈 - 뒤집어진 웃는 눈
+noStroke();
+fill(255, 224, 189);
+arc(250, 210, 50, 30, PI, 0, CHORD);
+arc(350, 210, 50, 30, PI, 0, CHORD);
+stroke(0);
+noFill();
+strokeWeight(3);
+arc(250, 210, 50, 30, PI, 0, OPEN);
+arc(350, 210, 50, 30, PI, 0, OPEN);
+} else if (eyeShapeState === 1) {
+// ㅡㅡ 눈 (직선)
+stroke(0);
+strokeWeight(4);
+line(225, 210, 275, 210);
+line(325, 210, 375, 210);
+} else {
+// >< 눈
+stroke(0);
+strokeWeight(3);
+line(230, 200, 270, 220);
+line(230, 220, 270, 200);
+line(330, 200, 370, 220);
+line(330, 220, 370, 200);
+}
+
+// 코
+fill(255, 150, 140);
+strokeWeight(2);
+triangle(295, 250, 305, 250, 300, 275);
+}
+
+function mousePressed() {
+// 귀걸이 색상 변경
+earringColorState++;
+if (earringColorState > 2) earringColorState = 0;
+
+// 눈 모양 변경
+eyeShapeState++;
+if (eyeShapeState > 2) eyeShapeState = 0;
+
+redraw();
+}
+
+function mouseMoved() {
+if (mouseX < width / 2) {
+bgColor = color(230, 210, 255); // 연보라색 (기본)
+} else {
+bgColor = color(255, 255, 204); // 연한 노란색
+}
+redraw();
+}
+
+function keyPressed() {
+if (key === 'a' || key === 'A') {
+bgColor = color(255);
+redraw();
+}
+if (key === 's' || key === 'S') {
+saveGif('mySketch', 10);
+}
+}
+
+new p5(sketch3, 'sketch3');
+
+// ===== 과제 4 =====
+const sketch4 = (p) => {
+// 눈송이
+let snowflakes = [];
+const NUM_SNOW = 80;
+
+// 모자 내려오는 진행 정도(0~1)
+let hatProgress = 0;
+
+function setup() {
+createCanvas(600, 400);
+
+// 처음 하늘색 배경
+background(220, 235, 255);
+
+// 눈송이들 초기화
+for (let i = 0; i < NUM_SNOW; i++) {
+snowflakes.push({
+x: random(width),
+y: random(height),
+size: random(2, 6),
+speed: random(0.5, 2)
+});
+}
+}
+
+function draw() {
+// === 1. 배경 색상 애니메이션 (색상 변화, sin + lerpColor 사용) ===
+let c1 = color(220, 235, 255); // 기본 하늘색
+let c2 = color(150, 180, 255); // 조금 더 진한 하늘색
+let amt = (sin(frameCount * 0.02) + 1) / 2; // 0~1 사이 값
+let bg = lerpColor(c1, c2, amt);
+background(bg);
+
+// === 2. 뒤에서 떨어지는 눈송이 (움직임, random, cos 사용) ===
+noStroke();
+for (let flake of snowflakes) {
+fill(255, 255, 255, 220);
+ellipse(flake.x, flake.y, flake.size, flake.size);
+
+// 중력처럼 떨어지는 Y축
+flake.y += flake.speed;
+
+// 약간의 좌우 흔들림 (cos 사용)
+flake.x += cos(frameCount * 0.01 + flake.y * 0.02) * 0.2;
+
+// 화면 아래로 나가면 다시 위에서 등장
+if (flake.y > height) {
+flake.y = random(-20, 0);
+flake.x = random(width);
+}
+}
+
+// === 3. 눈사람 크기 (크기 변화, sin 사용) ===
+let bodySize = 120 + 10 * sin(frameCount * 0.03);
+let headSize = 70 + 5 * sin(frameCount * 0.03 + PI / 4);
+
+// ===== 눈사람 (기본 코드 유지 + 크기만 살짝 애니메이션) =====
+
+// 몸통 (큰 원)
+noStroke();
+fill(255);
+ellipse(300, 270, bodySize, bodySize);
+
+// 머리 (작은 원)
+ellipse(300, 170, headSize, headSize);
+
+// 눈
+fill(30);
+ellipse(285, 165, 8, 8);
+ellipse(315, 165, 8, 8);
+
+// 당근 코 (삼각형)
+fill(255, 140, 0);
+triangle(300, 170, 300, 180, 325, 175);
+
+// 버튼 3개 (원)
+fill(60);
+ellipse(300, 245, 12, 12);
+ellipse(300, 270, 12, 12);
+ellipse(300, 295, 12, 12);
+
+// 팔 (선)
+stroke(120, 80, 40);
+strokeWeight(5);
+line(250, 270, 180, 200);
+line(350, 270, 420, 200);
+
+// === 4. 모자 + 색상 (colorMode, millis 사용) ===
+push();
+rectMode(CENTER);
+
+// HSB 색공간으로 모자 색 바꾸기
+colorMode(HSB);
+let hatHue = (millis() * 0.02) % 360; // 시간이 지날수록 색상 회전
+let hatCol = color(hatHue, 80, 90);
+
+// 다시 RGB로 되돌려서 다른 도형에 영향 안 주게
+colorMode(RGB);
+noStroke();
+fill(hatCol);
+
+// 모자 내려오는 진행도(0~1로 증가)
+if (hatProgress < 1) {
+hatProgress += 0.02; // 숫자 줄이면 더 느리게 내려옴
+}
+
+// ease-out 느낌(약간 튕기듯이 멈추게)
+let t = hatProgress;
+t = 1 - pow(1 - t, 3); // easeOutCubic
+
+// -200(화면 위)에서 0(제자리)까지 내려오도록
+let dropOffset = lerp(-200, 0, t);
+
+// 다 내려온 뒤엔 살짝 위아래로 흔들리게
+let wobble = 0;
+if (hatProgress >= 1) {
+wobble = sin(frameCount * 0.05) * 3;
+}
+
+let hatYExtra = dropOffset + wobble;
+
+// 모자 위치는 머리 위 기준
+// 챙
+rect(300, 140 + hatYExtra, headSize * 0.9, 10);
+// 윗부분
+rect(300, 115 + hatYExtra, headSize * 0.6, 40);
+
+pop();
+}
+
+function keyPressed() {
+if (key === 's' || key === 'S') {
+saveGif('snowman_animation', 10); // 10초
+}
+}
+
+new p5(sketch4, 'sketch4');
+</script>
+</body>
+</html>
